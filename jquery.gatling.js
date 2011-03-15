@@ -541,17 +541,17 @@
 		return $.isArray(results) ? results[1] : undefined;
 	};
 	
-	//	Standard write
-	document.write = writeInterrupt;
-	
-	//	Standard write
-	document.writeln = writeInterrupt;
-	
 	//	Start of Load Time 
 	_.loadTime.start = LOAD_START;
 	
 	$(function ()
 	{
+		//	Standard write
+		document.write = writeInterrupt;
+		
+		//	Standard write
+		document.writeln = writeInterrupt;
+	
 		$('<style type="text/css">' + CSS_RULES.join('') + '</style>').appendTo("head");
 	
 		//	End of Load Time
