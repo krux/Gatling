@@ -38,8 +38,7 @@
 		 *	For example, if you wanted to notify two different Google Analytics accounts,
 		 *	you only need to _define_ the gatling tracker once.
 		 */
-		$.gatling.declare(
-		[
+		$.gatling.declare([
 			/**
 			 *	An example of a javascript-based tracking library, Google Analytics.
 			 */
@@ -53,8 +52,7 @@
 				 *	The tracker definition. This is the important piece that tells gatling
 				 *	how it should handle firing the pixel.
 				 */
-				definition:
-				{
+				definition: {
 					/**
 					 *	The path to the tracker library being used. This should not contain
 					 *	the "http" prefix, as gatling will append either http:// or https://
@@ -92,8 +90,7 @@
 					 *	@param tracker	The configuration object provided to fire an instance of this
 					 *					pixel. This is not the actual "google analytics" tracker itself.
 					 */
-					loaded: function (tracker)
-					{	
+					loaded: function (tracker) {	
 						/**
 						 *	The tracker.ready() function is a callback which can be defined by the 
 						 *	configuration used to fire this pixel. If you do not implement a 
@@ -133,8 +130,7 @@
 				 *	The tracker definition. This is the important piece that tells gatling
 				 *	how it should handle firing the pixel.
 				 */
-				definition:
-				{
+				definition: {
 					/**
 					 *	The path to the tracking pixel image which actually triggers the tracking. Notice, the
 					 *	name of this variable is "image" instead of "path". Use "image" when declaring a tracker
@@ -163,8 +159,7 @@
 				 *		...
 				 *	}
 				 */
-				replacements:
-				{
+				replacements: {
 					google_conversion_id: "%google_conversion_id%"
 				}
 			}
@@ -181,8 +176,7 @@
 		 *	Above, we were merely defining the types of trackers we wanted to be able to use. This is where you
 		 *	need to input your urchin ids, etc.
 		 */
-		$.gatling.load(
-		[
+		$.gatling.load([
 			/**
 			 *	Load an instance of the google_analytics tracker.
 			 */
@@ -209,8 +203,7 @@
 				 *
 				 *	@param pageTracker	The instance of the GAT tracker we created in our tracker.loaded() method.
 				 */
-				listener: function (tracker, pageTracker)
-				{
+				listener: function (tracker, pageTracker) {
 					pageTracker._setAllowHash(false);
 					pageTracker._setDomainName('.example.com');
 					pageTracker._trackPageview();
@@ -225,8 +218,7 @@
 				
 				id: 'UA-7777777-2',
 				
-				listener: function (tracker, pageTracker)
-				{
+				listener: function (tracker, pageTracker) {
 					pageTracker._setAllowHash(false);
 					pageTracker._setDomainName('.example.com');
 					pageTracker._trackPageview();

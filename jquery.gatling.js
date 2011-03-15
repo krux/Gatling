@@ -1,5 +1,5 @@
 /*!
- *	Gatling Analytics v0.1.5
+ *	Gatling Analytics v0.1.6
  *
  *	Copyright (c) 2010 Knewton
  *	Dual licensed under:
