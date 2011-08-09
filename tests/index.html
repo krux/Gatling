@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>Gatling Tracker Tests</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<!-- Include jQuery from Google's CDN -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		
+		<!-- Include the Gatling plugin -->
+		<script type="text/javascript" src="../jquery.gatling.js"></script>
+		
+		<!-- Qunit -->
+		<link rel="stylesheet" href="qunit.css">
+		<script src="qunit.js"></script>
+		<script src="gatling.test.js"></script>
+		<script src="tracker.tests.js"></script>
+	</head>
+	<body>
+	<p>
+	This page uses <a href="http://docs.jquery.com/Qunit">Qunit</a> to test trackers. This test can be repeated in multiple browsers.
+	<form>
+		<select name="filter" onChange="this.form.submit()">
+		<option value="">Select a tracker to test...
+		</select>
+		<span id="big_red" style="color:red; font-size: larger; font-weight: bold; display:none">&larr;</span>
+		<script>
+		if (window.location.search.indexOf("filter") == -1) {
+			jQuery("#big_red").fadeIn("slow");
+		}
+		</script>
+	</form>
+<!-- I'm not sure how this would actually work yet.
+	<p>
+	-- OR --
+	</p>
+	<input type="button" value="Test all trackers" onClick="window.location.href='?'">
+-->
+
+	<hr />
+	<!-- Qunit html -->
+	<h1 id="qunit-header">Gatling unit tests</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture">test markup, will be hidden</div>
+	<!-- /Qunit html -->
+
+	<script>
+	// trackerTests are defined in tracker.tests.js
+	for (var i = 0, l = trackerTests.length; i < l; i++) {
+		// Add it to the drop down
+		jQuery("select[name=filter]").append(jQuery("<option></option>").html(trackerTests[i].name));
+
+		if (window.location.search.indexOf(trackerTests[i].name) == -1) {
+			// Only run the selected test. Future release we will be able to run them all?
+			continue;
+		}
+
+		// pull in the gatling tracker, when it's loaded run the tests
+		GatlingTest.loadScript("../trackers/" + trackerTests[i].name, trackerTests[i].runTests());
+	}
+
+	</script>
+	</body>
+</html>
